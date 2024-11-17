@@ -24,6 +24,8 @@ jobs:
         sudo apt-get install -y binutils-mips-linux-gnu build-essential git pkgconf python3
 
     - name: Decrypt game
+      env:
+        GAME_KEY: ${{ secrets.GAME_KEY }}
       run: openssl des3 -d -k $GAME_KEY < game > baserom.us.z64
 
     - name: Initialize CodeQL
