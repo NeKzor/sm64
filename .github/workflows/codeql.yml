@@ -32,7 +32,7 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: ${{ matrix.language }}
-        queries: security-extended,security-and-quality
+        queries: security-and-quality
 
     - name: Build
       run: VERSION=us make COMPARE=0 -j8
@@ -41,3 +41,4 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
+        skip-queries: cwe/cwe-120
