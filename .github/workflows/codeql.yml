@@ -35,7 +35,7 @@ jobs:
         #queries: security-extended,security-and-quality
 
     - name: Build
-      run: VERSION=us make COMPARE=0 -j8
+      run: gmake VERSION=us COMPARE=0 -j$(nproc)
 
     - name: Perform CodeQL analysis
       uses: github/codeql-action/analyze@v3
