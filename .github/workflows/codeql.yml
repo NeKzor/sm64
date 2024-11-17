@@ -41,4 +41,4 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-        ram: 4000
+        ram: 12000000
