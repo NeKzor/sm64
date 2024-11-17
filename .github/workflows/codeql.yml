@@ -6,7 +6,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    runs-on: macos-latest
     timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
     permissions:
       security-events: write
@@ -20,8 +20,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo apt-get install -y binutils-mips-linux-gnu build-essential git pkgconf python3
+        brew update
+        brew install openssl coreutils make pkg-config tehzz/n64-dev/mips64-elf-binutils
 
     - name: Decrypt game
       env:
@@ -41,4 +41,3 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
-        ram: 12000000
